@@ -1,0 +1,26 @@
+// Normalize
+@use './normalize';
+
+// Theme
+@use './theme';
+
+// Components
+@use './components/wrapper.scss';
+
+#page-notes-content-script {
+  left: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+  }
+}
