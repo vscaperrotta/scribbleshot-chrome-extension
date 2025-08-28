@@ -1,0 +1,24 @@
+#page-notes-content-script {
+  .crhmext-toolbar-container {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: .25rem;
+    display: flex;
+    gap: .5rem;
+    padding: .5rem;
+    left: 50%;
+    position: fixed;
+    top: 1rem;
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    .crhmext-divider {
+      border-left: .063rem solid rgba(0, 0, 0, 0.5);
+      height: 1.5rem;
+    }
+
+    .crhmext-toolbar-grab {
+      // cursor: grab;
+    }
+  }
+}

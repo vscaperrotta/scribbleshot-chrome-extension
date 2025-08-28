@@ -1,10 +1,18 @@
-.crhmext-page-wrapper {
-  border: 2px solid coral;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 999999;
+#page-notes-content-script {
+  .crhmext-page-wrapper {
+    border: .125rem solid var(--wrapper-border-color);
+    border-radius: var(--wrapper-border-radius);
+    box-shadow: inset .25rem .25rem 1rem 0px var(--wrapper-box-shadow-color),
+      inset -.25rem -.25rem 1rem var(--wrapper-box-shadow-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+
+    .crhmext-page-canvas-container {
+      position: relative;
+    }
+  }
 }

@@ -1,0 +1,48 @@
+#page-notes-content-script {
+
+  .crhmext-button {
+    align-items: center;
+    border-radius: .25rem;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    gap: .5rem;
+    padding: .4rem 1rem;
+    line-height: 1rem;
+    font-size: .8rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+
+    &--primary {
+      background-color: #007bff;
+      border: .063rem solid #0a58ab;
+
+      &:hover {
+        background-color: #0a58ab;
+        border: .063rem solid #007bff;
+      }
+    }
+
+    &--secondary {
+      background-color: #ff9d00;
+      border: .063rem solid #ff6600;
+
+      &:hover {
+        background-color: #ff6600;
+        border: .063rem solid #ff9d00;
+      }
+    }
+
+    &:disabled {
+      background-color: #6f6f6f;
+      border: .063rem solid #999999;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: #6f6f6f;
+        border: .063rem solid #999999;
+      }
+    }
+  }
+}

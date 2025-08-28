@@ -1,5 +1,25 @@
-:root {}
+:root {
+  --wrapper-border-color: #32adb7;
+  --wrapper-border-radius: .5rem;
+  --wrapper-box-shadow-color: #32adb729;
+
+
+
+  --button-bg-color: #007bff;
+  --button-text-color: #ffffff;
+  --button-bg-hover-color: #0056b3;
+}
 
 @media (prefers-color-scheme: dark) {
-  :root {}
+  :root {
+    --wrapper-border-color: #32adb7;
+    --wrapper-border-radius: .5rem;
+    --wrapper-box-shadow-color: #32adb729;
+
+
+
+    --button-bg-color: #1a73e8;
+    --button-text-color: #ffffff;
+    --button-bg-hover-color: #135ab6;
+  }
 }
