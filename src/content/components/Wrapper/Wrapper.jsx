@@ -7,8 +7,9 @@ import {
   handleUndo,
   handleRedo
 } from "./utils";
-import useDebugCanvas from "./useDebugCanvas";
-import useDraw from "./useDraw";
+import useDebugCanvas from "./hooks/useDebugCanvas";
+import useDraw from "./hooks/useDraw";
+import useScreenshot from "./hooks/useScreenshot";
 import messages from './messages';
 
 export default function Wrapper() {
@@ -19,6 +20,9 @@ export default function Wrapper() {
   // Stack per undo/redo
   const [history, setHistory] = useState([]);
   const [redoStack, setRedoStack] = useState([]);
+
+  // Screenshot hook
+  const { loading, handleScreenshot } = useScreenshot();
 
   // Variables
   const canvasWidth = window.innerWidth;
@@ -39,56 +43,21 @@ export default function Wrapper() {
     setRedoStack
   });
 
-  function handleScreenshot() {
-    const rect = { x: 0, y: 0, width: 100, height: 100 };
-
-    chrome.runtime.sendMessage(
-      {
-        msg: "capture_tab",
-        rect: rect
-      },
-      function (response) {
-        const image = new Image()
-
-        // Reference
-        // https://medium.com/tarkalabs-til/cropping-a-screenshot-captured-with-a-chrome-extension-a52ac9816d10
-
-        console.log(response.tabId)
-
-        image.src = response.imgSrc
-        image.onload = function () {
-          const canvas = document.createElement("canvas")
-          const scale = window.devicePixelRatio
-
-          // canvas.width = width * scale
-          // canvas.height = height * scale
-          const ctx = canvas.getContext("2d")
-
-          // ctx.drawImage(
-          //   image,
-          //   left * scale,
-          //   top * scale,
-          //   width * scale,
-          //   height * scale,
-          //   0,
-          //   0,
-          //   width * scale,
-          //   height * scale
-          // )
-
-          const croppedImage = canvas.toDataURL()
-          // Do stuff with your cropped image
-          console.log('croppedImage', croppedImage)
-        }
-      }
-    )
-  }
-
   return (
-    <div className="crhmext-page-wrapper">
+    <div
+      className="crhmext-page-wrapper"
+      style={loading ? {
+        pointerEvents: 'none',
+        border: 'none',
+        boxShadow: 'none',
+        transition: 'border 0.4s ease-in-out, box-shadow 0.4s ease-in-out'
+      } : {}}>
       <div className="crhmext-page-canvas-container">
         <div className="crhmext-canvas-container">
-          <Toolbar>
+          <Toolbar style={loading ? {
+            top: '-100px',
+            transition: 'top 0.4s ease-in-out'
+          } : {}}>
             <Button
               label={messages.clear}
               variant='primary'

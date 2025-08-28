@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { saveState } from "./utils";
+import { saveState } from "../utils";
 
 export default function useDraw({
   canvasRef,
@@ -25,7 +25,18 @@ export default function useDraw({
 
     const handleMouseDown = (e) => {
       setIsDrawing(true);
-      setStartPoint(getMousePos(e));
+      const point = getMousePos(e);
+      setStartPoint(point);
+
+      // Disegna un dot al click per migliorare la visualizzazione
+      ctx.beginPath();
+      ctx.strokeStyle = "lime";
+      ctx.lineWidth = 4;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.arc(point.x, point.y, 2, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.fillStyle = "lime";
     };
 
     const handleMouseMove = (e) => {
@@ -35,6 +46,8 @@ export default function useDraw({
       ctx.beginPath();
       ctx.strokeStyle = "lime";
       ctx.lineWidth = 4;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
       ctx.moveTo(startPoint.x, startPoint.y);
       ctx.lineTo(currentPoint.x, currentPoint.y);
       ctx.stroke();
@@ -62,5 +75,5 @@ export default function useDraw({
       canvas.removeEventListener("mouseup", handleMouseUp);
       canvas.removeEventListener("mouseleave", handleMouseUp);
     };
-  }, [isDrawing, startPoint, history]);
+  }, [isDrawing, startPoint, history, canvasRef, setHistory, setIsDrawing, setRedoStack, setStartPoint]);
 }
