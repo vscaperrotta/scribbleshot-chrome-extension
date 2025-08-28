@@ -1,7 +1,7 @@
 import Icons from '../Icons';
 
 export default function Button({
-  label = '',
+  label = null,
   onClick = undefined,
   disabled = false,
   variant = 'primary',
@@ -28,7 +28,7 @@ export default function Button({
       disabled={disabled}
     >
       {icon ? getIcon(icon) : null}
-      {label}
+      {label ? label : null}
     </button>
   );
 }

@@ -1,40 +1,27 @@
 import { useRef, useState, useEffect } from "react";
 import Icons from "../Icons";
 
-export default function Toolbar() {
+export default function Toolbar({
+  children = null
+}) {
   const [isDragging, setIsDragging] = useState(false);
-  const [position, setPosition] = useState({ x: 100, y: 100 })
-  const offsetRef = useRef({ x: 0, y: 0 });
-  const toolbarRef = useRef(null)
+  const [toolbarSize, setToolbarSize] = useState({ height: 0, width: 0, });
+  const [position, setPosition] = useState({ x: window.innerWidth / 2 - toolbarSize / 2, y: 50 });
+  const toolbarRef = useRef(null);
+  const buttonRef = useRef(null);
 
   function handleDragStart(event) {
-    const rect = toolbarRef.current.getBoundingClientRect();
-
-    console.log(rect)
-
-    offsetRef.current = {
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    };
-
     setIsDragging(true);
     event.preventDefault();
   }
 
   useEffect(() => {
-    console.log(offsetRef.current.x, offsetRef.current.y)
-  }, [offsetRef.current.x, offsetRef.current.y])
-
-  useEffect(() => {
     function handleMouseMove(event) {
       if (!isDragging) return;
 
-      console.log(event.clientX)
       setPosition({
-        x: event.clientX + offsetRef.current.x,
-        // x: offsetRef.current.x,
-        // x: event.clientX,
-        y: event.clientY - offsetRef.current.y,
+        x: event.clientX,
+        y: event.clientY,
       });
     }
 
@@ -53,28 +40,41 @@ export default function Toolbar() {
     };
   }, [isDragging]);
 
+  useEffect(() => {
+    const toolbar = toolbarRef.current.getBoundingClientRect();
+    const button = buttonRef.current.getBoundingClientRect();
+
+    setToolbarSize({
+      height: toolbar.height / 2,
+      width: (toolbar.width / 2) - button.width
+    })
+  }, [])
+
   return (
     <div
       ref={toolbarRef}
       id="crhmext-toolbar"
       className="crhmext-toolbar-container"
       style={{
-        left: position.x,
-        top: position.y,
-        cursor: isDragging ? "grabbing" : "default",
+        border: isDragging ? '.063rem solid #fff' : 'none',
+        left: position.x + toolbarSize.width,
+        top: position.y - toolbarSize.height,
       }}
     >
       {/* Drag and drop toolbar */}
       <button
+        ref={buttonRef}
         className="crhmext-toolbar-grab"
         onMouseDown={handleDragStart}
         style={{
-          cursor: "grab"
+          cursor: isDragging ? "grabbing" : "grab"
         }}
       >
         <Icons value='drag' />
       </button>
-      <h1>TOOLBAR</h1>
+
+      {children}
+
     </div>
   );
 }

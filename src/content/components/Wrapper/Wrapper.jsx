@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import Button from "../Button";
 import Canvas from '../Canvas';
-import Icons from "../Icons";
 import Toolbar from "../Toolbar";
 import {
   handleClear,
@@ -40,27 +39,15 @@ export default function Wrapper() {
     setRedoStack
   });
 
-
   function handleScreenshot() {
     console.log("Saving screenshot...");
-  }
-
-  function handleDragAndDrop() {
-    console.log("Handle drag and drop...");
   }
 
   return (
     <div className="crhmext-page-wrapper">
       <div className="crhmext-page-canvas-container">
         <div className="crhmext-canvas-container">
-          <Toolbar />
-          <div className="crhmext-toolbar-container">
-            {/* Drag and drop toolbar */}
-            <button onClick={handleDragAndDrop}>
-              <Icons value='drag' />
-            </button>
-
-            {/* Clear canvas */}
+          <Toolbar>
             <Button
               label={messages.clear}
               variant='primary'
@@ -72,10 +59,8 @@ export default function Wrapper() {
               })}
               disabled={history.length === 0}
             />
-
-            {/* History manager */}
             <Button
-              label={messages.undo}
+              // label={messages.undo}
               variant='secondary'
               icon='undo'
               onClick={() => handleUndo({
@@ -87,7 +72,7 @@ export default function Wrapper() {
               disabled={history.length === 0}
             />
             <Button
-              label={messages.redo}
+              // label={messages.redo}
               variant='secondary'
               icon='redo'
               onClick={() => handleRedo({
@@ -98,10 +83,7 @@ export default function Wrapper() {
               })}
               disabled={redoStack.length === 0}
             />
-
             <div className="crhmext-divider" />
-
-            {/* Save Screenshot */}
             <Button
               label={messages.screenshot}
               variant='primary'
@@ -109,7 +91,7 @@ export default function Wrapper() {
               onClick={() => handleScreenshot()}
               disabled={history.length === 0}
             />
-          </div>
+          </Toolbar>
 
           {/* Canvas */}
           <Canvas
@@ -120,6 +102,6 @@ export default function Wrapper() {
           />
         </div>
       </div>
-    </div>
+    </div >
   );
 }
