@@ -3,7 +3,7 @@
   .crhmext-button {
     align-items: center;
     border-radius: .25rem;
-    color: #ffffff;
+    color: var(--button-text-color);
     cursor: pointer;
     display: flex;
     gap: .5rem;
@@ -15,33 +15,33 @@
     white-space: nowrap;
 
     &--primary {
-      background-color: #007bff;
-      border: .063rem solid #0a58ab;
+      background-color: var(--button-primary-bg-color);
+      border: .063rem solid var(--button-primary-bg-hover-color);
 
       &:hover {
-        background-color: #0a58ab;
-        border: .063rem solid #007bff;
+        background-color: var(--button-primary-bg-hover-color);
+        border: .063rem solid var(--button-primary-bg-color);
       }
     }
 
     &--secondary {
-      background-color: #ff9d00;
-      border: .063rem solid #ff6600;
+      background-color: var(--button-secondary-bg-color);
+      border: .063rem solid var(--button-secondary-bg-hover-color);
 
       &:hover {
-        background-color: #ff6600;
-        border: .063rem solid #ff9d00;
+        background-color: var(--button-secondary-bg-hover-color);
+        border: .063rem solid var(--button-secondary-bg-color);
       }
     }
 
     &:disabled {
-      background-color: #6f6f6f;
-      border: .063rem solid #999999;
+      background-color: var(--button-disabled-bg-color);
+      border: .063rem solid var(--button-disabled-bg-hover-color);
       cursor: not-allowed;
 
       &:hover {
-        background-color: #6f6f6f;
-        border: .063rem solid #999999;
+        background-color: var(--button-disabled-bg-hover-color);
+        border: .063rem solid var(--button-disabled-bg-color);
       }
     }
   }

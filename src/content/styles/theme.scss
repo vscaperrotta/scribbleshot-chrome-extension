@@ -3,23 +3,21 @@
   --wrapper-border-radius: .5rem;
   --wrapper-box-shadow-color: #32adb729;
 
+  --toolbar-bg-color: rgba(0, 0, 0, 0.8);
+  --toolbar-drag-icon-color: #eee;
 
-
-  --button-bg-color: #007bff;
   --button-text-color: #ffffff;
-  --button-bg-hover-color: #0056b3;
+  --button-primary-bg-color: #007bff;
+  --button-primary-bg-hover-color: #0a58ab;
+  --button-secondary-bg-color: #ff9d00;
+  --button-secondary-bg-hover-color: #ff6600;
+  --button-disabled-bg-color: #6f6f6f;
+  --button-disabled-bg-hover-color: #999999;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --wrapper-border-color: #32adb7;
-    --wrapper-border-radius: .5rem;
-    --wrapper-box-shadow-color: #32adb729;
-
-
-
-    --button-bg-color: #1a73e8;
-    --button-text-color: #ffffff;
-    --button-bg-hover-color: #135ab6;
+    --toolbar-bg-color: rgba(255, 255, 255, 0.8);
+    --toolbar-drag-icon-color: #333;
   }
 }
