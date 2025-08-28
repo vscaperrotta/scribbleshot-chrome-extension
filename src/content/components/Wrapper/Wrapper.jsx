@@ -40,7 +40,48 @@ export default function Wrapper() {
   });
 
   function handleScreenshot() {
-    console.log("Saving screenshot...");
+    const rect = { x: 0, y: 0, width: 100, height: 100 };
+
+    chrome.runtime.sendMessage(
+      {
+        msg: "capture_tab",
+        rect: rect
+      },
+      function (response) {
+        const image = new Image()
+
+        // Reference
+        // https://medium.com/tarkalabs-til/cropping-a-screenshot-captured-with-a-chrome-extension-a52ac9816d10
+
+        console.log(response.tabId)
+
+        image.src = response.imgSrc
+        image.onload = function () {
+          const canvas = document.createElement("canvas")
+          const scale = window.devicePixelRatio
+
+          // canvas.width = width * scale
+          // canvas.height = height * scale
+          const ctx = canvas.getContext("2d")
+
+          // ctx.drawImage(
+          //   image,
+          //   left * scale,
+          //   top * scale,
+          //   width * scale,
+          //   height * scale,
+          //   0,
+          //   0,
+          //   width * scale,
+          //   height * scale
+          // )
+
+          const croppedImage = canvas.toDataURL()
+          // Do stuff with your cropped image
+          console.log('croppedImage', croppedImage)
+        }
+      }
+    )
   }
 
   return (
@@ -60,7 +101,6 @@ export default function Wrapper() {
               disabled={history.length === 0}
             />
             <Button
-              // label={messages.undo}
               variant='secondary'
               icon='undo'
               onClick={() => handleUndo({
@@ -72,7 +112,6 @@ export default function Wrapper() {
               disabled={history.length === 0}
             />
             <Button
-              // label={messages.redo}
               variant='secondary'
               icon='redo'
               onClick={() => handleRedo({
