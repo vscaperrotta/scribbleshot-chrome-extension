@@ -20,6 +20,7 @@ export default function Wrapper() {
   const [startPoint, setStartPoint] = useState({ x: 0, y: 0 });
   const [isEraserMode, setIsEraserMode] = useState(false);
   const [color, setColor] = useState('#00ff00');
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // Stack per undo/redo
   const [history, setHistory] = useState([]);
@@ -58,6 +59,27 @@ export default function Wrapper() {
   useEffect(() => {
     setIsDrawingMode(true);
   }, []);
+
+  // Salva lo stato iniziale del canvas solo al primo caricamento
+  useEffect(() => {
+    if (canvasRef.current && !isInitialized) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      // Assicuriamoci che il canvas sia pulito e in modalità normale
+      ctx.globalCompositeOperation = "source-over";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const dataUrl = canvas.toDataURL();
+      const obj = {
+        dataUrl: dataUrl,
+        timestamp: Date.now(),
+        id: Math.random().toString(36)
+      };
+      setHistory([obj]);
+      setRedoStack([]);
+      setIsInitialized(true);
+    }
+  }, [canvasRef, isInitialized, setHistory, setRedoStack, setIsInitialized]);
 
   // Debug
   useDebugCanvas({ canvasRef, history });

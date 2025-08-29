@@ -1,4 +1,4 @@
-<h3 align='center'>Page Notes</h3>
+<h3 align='center'>ScribbleShot</h3>
 <p align='center'>Chrome Extension</p>
 
 <br />
@@ -10,7 +10,7 @@
 <br />
 <br />
 
-**{{NAME}}** è un'estensione per scrivere appunti sopra la pagina web. possibilità di esportare uno screen della pagina, o un documento con le note.
+**ScribbleShot** è un'estensione per scrivere appunti sopra la pagina web. possibilità di esportare uno screen della pagina, o un documento con le note.
 
 ![CSS Inspector Screenshot](assets/screenshot.png)
 

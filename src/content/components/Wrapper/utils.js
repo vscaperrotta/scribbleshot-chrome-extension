@@ -71,24 +71,23 @@ export function handleUndo({
   const canvas = canvasRef.current;
   const ctx = canvas.getContext("2d");
 
-  const lastState = history[history.length - 1];
   const currentState = createHistoryObj(canvas.toDataURL());
-
   setRedoStack((prev) => [...prev, currentState]);
+
   const newHistory = history.slice(0, -1);
   setHistory(newHistory);
 
-  const img = new Image();
-  img.src = lastState.dataUrl;
-  img.onload = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (newHistory.length > 0) {
-      const prevImg = new Image();
-      const prevState = newHistory[newHistory.length - 1];
-      prevImg.src = prevState.dataUrl;
-      prevImg.onload = () => ctx.drawImage(prevImg, 0, 0);
-    }
-  };
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  if (newHistory.length > 0) {
+    const prevState = newHistory[newHistory.length - 1];
+    const img = new Image();
+    img.src = prevState.dataUrl;
+    img.onload = () => {
+      ctx.globalCompositeOperation = "source-over"; // Assicuriamoci che sia in modalità normale
+      ctx.drawImage(img, 0, 0);
+    };
+  }
 }
 
 /**

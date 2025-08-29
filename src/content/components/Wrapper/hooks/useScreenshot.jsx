@@ -1,8 +1,22 @@
 import { useState } from "react";
 
+/**
+ * Custom hook for handling screenshot functionality
+ * Captures the current viewport and opens it in a new tab with annotations
+ * @returns {Object} Hook utilities
+ * @returns {boolean} loading - Whether screenshot capture is in progress
+ * @returns {Function} handleScreenshot - Function to initiate screenshot capture
+ */
 export default function useScreenshot() {
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Handles the screenshot capture process
+   * 1. Sets loading state and hides toolbar
+   * 2. Captures the current tab via Chrome extension API
+   * 3. Processes and crops the image
+   * 4. Opens the result in a new tab
+   */
   const handleScreenshot = () => {
     setLoading(true);
 
@@ -19,6 +33,7 @@ export default function useScreenshot() {
         height: window.innerHeight
       };
 
+      // Send message to background script to capture tab
       // eslint-disable-next-line no-undef
       chrome.runtime.sendMessage(
         {
@@ -35,16 +50,20 @@ export default function useScreenshot() {
           const image = new Image();
 
           image.src = response.imgSrc;
+
+          /**
+           * Handles successful image loading and processing
+           */
           image.onload = function () {
             const canvas = document.createElement("canvas");
             const scale = window.devicePixelRatio;
 
-            // Set canvas dimensions based on the rect
+            // Set canvas dimensions based on the rect and device pixel ratio
             canvas.width = rect.width * scale;
             canvas.height = rect.height * scale;
             const ctx = canvas.getContext("2d");
 
-            // Draw the cropped portion of the image
+            // Draw the cropped portion of the image to canvas
             ctx.drawImage(
               image,
               rect.x * scale,      // Source x
@@ -59,7 +78,7 @@ export default function useScreenshot() {
 
             const croppedImage = canvas.toDataURL();
 
-            // Open the cropped image in a new tab
+            // Open the cropped image in a new tab with styled HTML
             const newWindow = window.open();
             newWindow.document.write(`
               <html>
@@ -106,10 +125,13 @@ export default function useScreenshot() {
             `);
             newWindow.document.close();
 
-            // Reset loading state after everything is done
+            // Reset loading state after everything is completed
             setLoading(false);
           };
 
+          /**
+           * Handles image loading errors
+           */
           image.onerror = function () {
             console.error("Failed to load the captured image.");
             setLoading(false);
