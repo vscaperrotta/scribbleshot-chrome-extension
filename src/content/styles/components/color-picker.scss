@@ -1,0 +1,17 @@
+#scribble-shot-content-script {
+  .crhmext-color-picker {
+    background: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+
+    input[type="color"] {
+      border: none;
+      cursor: pointer;
+      height: 1.5rem;
+      width: 2rem;
+      padding: 0;
+      background: transparent;
+    }
+  }
+}

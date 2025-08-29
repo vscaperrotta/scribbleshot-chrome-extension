@@ -3,7 +3,7 @@ import App from './App';
 
 function initApp() {
   const container = document.createElement('div');
-  container.id = 'page-notes-content-script';
+  container.id = 'scribble-shot-content-script';
 
   document.body.appendChild(container);
 

@@ -1,8 +1,9 @@
-#page-notes-content-script {
+#scribble-shot-content-script {
   .crhmext-toolbar-container {
     align-items: center;
     background-color: var(--toolbar-bg-color);
     border-radius: .25rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
     display: flex;
     gap: .5rem;
     padding: .5rem;
@@ -13,7 +14,7 @@
     z-index: 1000;
 
     .crhmext-divider {
-      border-left: .063rem solid rgba(0, 0, 0, 0.5);
+      border-left: var(--toolbar-divider);
       height: 1.5rem;
     }
 

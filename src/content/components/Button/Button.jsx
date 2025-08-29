@@ -5,7 +5,8 @@ export default function Button({
   onClick = undefined,
   disabled = false,
   variant = 'primary',
-  icon = null
+  icon = null,
+  selected = false
 }) {
 
   function getIcon(icon) {

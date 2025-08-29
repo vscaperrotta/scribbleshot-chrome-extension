@@ -2,7 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import Icons from "../Icons";
 
 export default function Toolbar({
-  children = null
+  children = null,
+  style = {}
 }) {
   const [isDragging, setIsDragging] = useState(false);
   const [toolbarSize, setToolbarSize] = useState({ height: 0, width: 0, });
@@ -59,6 +60,7 @@ export default function Toolbar({
         border: isDragging ? '.063rem solid #fff' : 'none',
         left: position.x + toolbarSize.width,
         top: position.y - toolbarSize.height,
+        ...style,
       }}
     >
       {/* Drag and drop toolbar */}

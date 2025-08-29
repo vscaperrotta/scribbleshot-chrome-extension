@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../Button";
 import Canvas from '../Canvas';
 import Toolbar from "../Toolbar";
+import ColorPicker from "../ColorPicker";
 import {
   handleClear,
   handleUndo,
@@ -14,8 +15,11 @@ import messages from './messages';
 
 export default function Wrapper() {
   const canvasRef = useRef(null);
+  const [isDrawingMode, setIsDrawingMode] = useState(false);
   const [isDrawing, setIsDrawing] = useState(false);
   const [startPoint, setStartPoint] = useState({ x: 0, y: 0 });
+  const [isEraserMode, setIsEraserMode] = useState(false);
+  const [color, setColor] = useState('#00ff00');
 
   // Stack per undo/redo
   const [history, setHistory] = useState([]);
@@ -28,19 +32,49 @@ export default function Wrapper() {
   const canvasWidth = window.innerWidth;
   const canvasHeight = window.innerHeight;
 
+  // *********************************
+  // Handlers
+  // *********************************
+  function handleDrawingMode(event) {
+    setIsDrawingMode(!isDrawingMode);
+    setIsEraserMode(false);
+    event.preventDefault();
+  }
+
+  function handleEraserMode(event) {
+    setIsEraserMode(!isEraserMode);
+    setIsDrawingMode(false);
+    event.preventDefault();
+  }
+
+  function handleChangeColor(event) {
+    setColor(event.target.value);
+  }
+
+  // *********************************
+  // Hooks
+  // *********************************
+
+  useEffect(() => {
+    setIsDrawingMode(true);
+  }, []);
+
   // Debug
   useDebugCanvas({ canvasRef, history });
 
   // Initialize canvas and save initial state
   useDraw({
     canvasRef,
+    isDrawingMode,
     isDrawing,
     setIsDrawing,
+    color,
     startPoint,
     setStartPoint,
     history,
     setHistory,
-    setRedoStack
+    setRedoStack,
+    isEraserMode
   });
 
   return (
@@ -58,6 +92,21 @@ export default function Wrapper() {
             top: '-100px',
             transition: 'top 0.4s ease-in-out'
           } : {}}>
+            <Button
+              label={messages.draw}
+              variant={isDrawingMode ? 'primary' : 'default'}
+              onClick={handleDrawingMode}
+            />
+            <ColorPicker
+              defaultValue={color}
+              onChange={handleChangeColor}
+            />
+            <div className="crhmext-divider" />
+            <Button
+              label={messages.eraser}
+              variant={isEraserMode ? 'primary' : 'default'}
+              onClick={handleEraserMode}
+            />
             <Button
               label={messages.clear}
               variant='primary'

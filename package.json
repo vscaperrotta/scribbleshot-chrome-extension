@@ -1,6 +1,6 @@
 {
-  "name": "page-notes-chrome-extension",
-  "displayName": "Pages Notes",
+  "name": "scribble-shot-chrome-extension",
+  "displayName": "ScribbleShot",
   "description": "Chrome extention to write note in page and export a screen of the page with the note",
   "version": "0.0.1",
   "private": true,

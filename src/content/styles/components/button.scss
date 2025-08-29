@@ -1,4 +1,4 @@
-#page-notes-content-script {
+#scribble-shot-content-script {
 
   .crhmext-button {
     align-items: center;
@@ -13,6 +13,18 @@
     font-weight: 600;
     transition: background-color 0.3s ease;
     white-space: nowrap;
+
+    &--default {
+      background-color: var(--button-default-bg-color);
+      border: none;
+      color: var(--button-default-text-color);
+
+      &:hover {
+        background-color: var(--button-default-bg-hover-color);
+        border: none;
+        color: var(--button-default-text-color);
+      }
+    }
 
     &--primary {
       background-color: var(--button-primary-bg-color);
@@ -37,11 +49,22 @@
     &:disabled {
       background-color: var(--button-disabled-bg-color);
       border: .063rem solid var(--button-disabled-bg-hover-color);
+      color: var(--button-disabled-text-color);
       cursor: not-allowed;
+
+      svg {
+        stroke: var(--button-disabled-text-color);
+      }
 
       &:hover {
         background-color: var(--button-disabled-bg-hover-color);
         border: .063rem solid var(--button-disabled-bg-color);
+        color: var(--button-disabled-text-color);
+        cursor: not-allowed;
+
+        svg {
+          stroke: var(--button-disabled-text-color);
+        }
       }
     }
   }

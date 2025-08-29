@@ -42,6 +42,12 @@ export async function getManifest() {
         ]
       }
     ],
+    web_accessible_resources: [
+      {
+        resources: ["screenshot-template.html"],
+        matches: ["<all_urls>"]
+      }
+    ]
   }
 
   return manifest
