@@ -2664,7 +2664,6 @@ __metadata:
     fs-extra: "npm:^11.3.0"
     globals: "npm:^15.14.0"
     npm-run-all: "npm:^4.1.5"
-    prop-types: "npm:^15.8.1"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     react-feather: "npm:^2.0.10"

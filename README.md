@@ -12,7 +12,9 @@
 
 **Hebi** is a Chrome extension that allows you to draw annotations directly on web pages. With an intuitive drawing interface, you can highlight important content, add visual notes, and capture annotated screenshots for later reference or sharing.
 
-![CSS Inspector Screenshot](assets/screenshot.png)
+<div align='center'>
+   <img src='./assets/preview.jpg' width='400' />
+</div>
 
 ---
 
