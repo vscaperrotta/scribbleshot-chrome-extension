@@ -18,9 +18,7 @@ export async function getManifest() {
       128: "icon.png"
     },
     permissions: [
-      "activeTab",
-      "storage",
-      "unlimitedStorage"
+      "activeTab"
     ],
     host_permissions: [
       "<all_urls>"
