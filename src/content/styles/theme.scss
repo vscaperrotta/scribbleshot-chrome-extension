@@ -1,5 +1,38 @@
-:root {}
+:root {
+  --wrapper-border-color: #32adb7;
+  --wrapper-border-radius: .5rem;
+  --wrapper-box-shadow-color: #32adb729;
+
+  // Toolbar
+  --toolbar-bg-color: rgba(0, 0, 0, 0.8);
+  --toolbar-drag-icon-color: #eee;
+  --toolbar-divider: .063rem solid rgba(255, 255, 255, 0.8);
+
+  // Button
+  --button-text-color: #ffffff;
+  --button-default-bg-color: transparent;
+  --button-default-bg-hover-color: rgba(255, 255, 255, 0.1);
+  --button-default-text-color: #fff;
+
+  --button-primary-bg-color: #31A29F;
+  --button-primary-bg-hover-color: #1C5C77;
+
+  --button-secondary-bg-color: #FC9E01;
+  --button-secondary-bg-hover-color: #FD7D00;
+
+  --button-disabled-bg-color: #ececec;
+  --button-disabled-bg-hover-color: #d8d8d8;
+  --button-disabled-text-color: #888;
+}
 
 @media (prefers-color-scheme: dark) {
-  :root {}
+  :root {
+    --toolbar-bg-color: rgba(255, 255, 255, 0.8);
+    --toolbar-drag-icon-color: #333;
+    --toolbar-divider: .063rem solid rgba(0, 0, 0, 0.8);
+
+    // Button
+    --button-default-bg-hover-color: rgba(0, 0, 0, 0.1);
+    --button-default-text-color: #333;
+  }
 }

@@ -1,4 +1,4 @@
-<h3 align='center'>Page Notes</h3>
+<h3 align='center'>Hebi - ヘビ</h3>
 <p align='center'>Chrome Extension</p>
 
 <br />
@@ -10,15 +10,22 @@
 <br />
 <br />
 
-**{{NAME}}** è un'estensione per scrivere appunti sopra la pagina web. possibilità di esportare uno screen della pagina, o un documento con le note.
+**Hebi** is a Chrome extension that allows you to draw annotations directly on web pages. With an intuitive drawing interface, you can highlight important content, add visual notes, and capture annotated screenshots for later reference or sharing.
 
-![CSS Inspector Screenshot](assets/screenshot.png)
+<div align='center'>
+   <img src='./assets/preview.jpg' width='400' />
+</div>
 
 ---
 
 ## Key Features
 
-- **FEATURE**: lorem ipsum dolor sit amet.
+- **🎨 Drawing Tools**: Draw freehand annotations directly on any web page with customizable colors and brush sizes
+- **🧽 Eraser Mode**: Easily remove unwanted annotations with the built-in eraser tool
+- **🎨 Color Picker**: Choose from any color to match your annotation style or highlight different types of content
+- **↩️ Undo/Redo**: Full history management with unlimited undo and redo capabilities for your drawings
+- **📸 Screenshot Capture**: Take high-quality screenshots of the entire page including your annotations
+- **🧹 Clear Canvas**: Quickly clear all annotations to start fresh
 
 ---
 
@@ -92,7 +99,7 @@ Scripts can be run using Yarn:
 
 ## Requirements
 
-- **Node.js**: >= 20.18.x
+- **Node.js**: >= 22.16.0
 - **Package Manager**: Yarn (v4.5.0)
 
 ---

@@ -1,0 +1,31 @@
+#hebi-content-script {
+  .crhmext-toolbar-container {
+    align-items: center;
+    background-color: var(--toolbar-bg-color);
+    border-radius: .25rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    gap: .5rem;
+    padding: .5rem;
+    left: 50%;
+    position: fixed;
+    top: 1rem;
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    .crhmext-divider {
+      border-left: var(--toolbar-divider);
+      height: 1.5rem;
+    }
+
+    .crhmext-toolbar-grab {
+      background: transparent;
+      border: none;
+      height: 1.25rem;
+
+      path {
+        stroke: var(--toolbar-drag-icon-color);
+      }
+    }
+  }
+}

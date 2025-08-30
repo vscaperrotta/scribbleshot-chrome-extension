@@ -1,0 +1,17 @@
+#hebi-content-script {
+  .crhmext-color-picker {
+    align-items: center;
+    border-radius: .25rem;
+    display: flex;
+    justify-content: center;
+
+    input[type="color"] {
+      background-color: buttonface;
+      border: none;
+      cursor: pointer;
+      height: 1.5rem;
+      width: 2rem;
+      padding: 0;
+    }
+  }
+}

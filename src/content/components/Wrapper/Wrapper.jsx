@@ -1,0 +1,188 @@
+import { useEffect, useRef, useState } from "react";
+import Button from "../Button";
+import Canvas from '../Canvas';
+import Toolbar from "../Toolbar";
+import ColorPicker from "../ColorPicker";
+import {
+  handleClear,
+  handleUndo,
+  handleRedo
+} from "./utils";
+import useDebugCanvas from "./hooks/useDebugCanvas";
+import useDraw from "./hooks/useDraw";
+import useScreenshot from "./hooks/useScreenshot";
+import messages from './messages';
+
+export default function Wrapper() {
+  const DEFAULT_COLOR = '#00ff00';
+
+  const canvasRef = useRef(null);
+  const [isDrawingMode, setIsDrawingMode] = useState(false);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [startPoint, setStartPoint] = useState({ x: 0, y: 0 });
+  const [isEraserMode, setIsEraserMode] = useState(false);
+  const [color, setColor] = useState(DEFAULT_COLOR);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Stack per undo/redo
+  const [history, setHistory] = useState([]);
+  const [redoStack, setRedoStack] = useState([]);
+
+  // Screenshot hook
+  const { loading, handleScreenshot } = useScreenshot();
+
+  // Variables
+  const canvasWidth = window.innerWidth;
+  const canvasHeight = window.innerHeight;
+
+  // *********************************
+  // Handlers
+  // *********************************
+  function handleDrawingMode(event) {
+    setIsDrawingMode(!isDrawingMode);
+    setIsEraserMode(false);
+    event.preventDefault();
+  }
+
+  function handleEraserMode(event) {
+    setIsEraserMode(!isEraserMode);
+    setIsDrawingMode(false);
+    event.preventDefault();
+  }
+
+  function handleChangeColor(event) {
+    setColor(event.target.value);
+  }
+
+  // *********************************
+  // Hooks
+  // *********************************
+
+  useEffect(() => {
+    setIsDrawingMode(true);
+  }, []);
+
+  // Salva lo stato iniziale del canvas solo al primo caricamento
+  useEffect(() => {
+    if (canvasRef.current && !isInitialized) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      // Assicuriamoci che il canvas sia pulito e in modalità normale
+      ctx.globalCompositeOperation = "source-over";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const dataUrl = canvas.toDataURL();
+      const obj = {
+        dataUrl: dataUrl,
+        timestamp: Date.now(),
+        id: Math.random().toString(36)
+      };
+      setHistory([obj]);
+      setRedoStack([]);
+      setIsInitialized(true);
+    }
+  }, [canvasRef, isInitialized, setHistory, setRedoStack, setIsInitialized]);
+
+  // Debug
+  useDebugCanvas({ canvasRef, history });
+
+  // Initialize canvas and save initial state
+  useDraw({
+    canvasRef,
+    isDrawingMode,
+    isDrawing,
+    setIsDrawing,
+    color,
+    startPoint,
+    setStartPoint,
+    history,
+    setHistory,
+    setRedoStack,
+    isEraserMode
+  });
+
+  return (
+    <div
+      className="crhmext-page-wrapper"
+      style={loading ? {
+        pointerEvents: 'none',
+        border: 'none',
+        boxShadow: 'none',
+        transition: 'border 0.4s ease-in-out, box-shadow 0.4s ease-in-out'
+      } : {}}>
+      <div className="crhmext-page-canvas-container">
+        <div className="crhmext-canvas-container">
+          <Toolbar style={loading ? {
+            top: '-100px',
+            transition: 'top 0.4s ease-in-out'
+          } : {}}>
+            <Button
+              label={messages.draw}
+              variant={isDrawingMode ? 'primary' : 'default'}
+              onClick={handleDrawingMode}
+            />
+            <ColorPicker
+              defaultValue={color}
+              onChange={handleChangeColor}
+            />
+            <div className="crhmext-divider" />
+            <Button
+              label={messages.eraser}
+              variant={isEraserMode ? 'primary' : 'default'}
+              onClick={handleEraserMode}
+            />
+            <Button
+              label={messages.clear}
+              variant='primary'
+              icon='clear'
+              onClick={() => handleClear({
+                canvasRef,
+                setHistory,
+                setRedoStack
+              })}
+              disabled={history.length === 0}
+            />
+            <Button
+              variant='secondary'
+              icon='undo'
+              onClick={() => handleUndo({
+                canvasRef,
+                history,
+                setHistory,
+                setRedoStack
+              })}
+              disabled={history.length === 0}
+            />
+            <Button
+              variant='secondary'
+              icon='redo'
+              onClick={() => handleRedo({
+                canvasRef,
+                redoStack,
+                setRedoStack,
+                setHistory
+              })}
+              disabled={redoStack.length === 0}
+            />
+            <div className="crhmext-divider" />
+            <Button
+              label={messages.screenshot}
+              variant='primary'
+              icon='screenshot'
+              onClick={() => handleScreenshot()}
+              disabled={history.length === 0}
+            />
+          </Toolbar>
+
+          {/* Canvas */}
+          <Canvas
+            ref={canvasRef}
+            id="crhmext-canvas"
+            height={canvasHeight}
+            width={canvasWidth}
+          />
+        </div>
+      </div>
+    </div >
+  );
+}
