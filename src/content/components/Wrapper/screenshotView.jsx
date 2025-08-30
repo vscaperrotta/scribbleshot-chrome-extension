@@ -1,57 +1,29 @@
-import React from "react";
-
+/**
+ * Opens a screenshot in a new tab for viewing and sharing
+ * @param {string} image - Base64 encoded image data or image URL
+ * @description This function creates a new browser tab to display the screenshot
+ * using the extension's screenshot.html page. The image data is passed as a URL parameter.
+ * If popup blocking is enabled, it shows an alert to guide the user.
+ * @example
+ * screenshotView('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...')
+ */
 export default function screenshotView(image) {
-  const screenshot = `<img src="${image}" alt="Cropped Screenshot" />`;
+  // Encode the image data to safely pass it as a URL parameter
+  const encodedImage = encodeURIComponent(image);
 
-  const newWindow = window.open();
-  newWindow.document.write(`
-    <html>
-      <head>
-        <title>Cropped Screenshot</title>
-        <style>
-          body {
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-          }
-          .container {
-            text-align: center;
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            width: 100%;
-            height: 100%;
-          }
-          img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-          }
-          h1 {
-            color: #333;
-            margin-bottom: 20px;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div>
-            <button>Download PNG</button>
-          </div>
-          <div>
-            ${screenshot}
-          </div>
-        </div>
-      </body>
-    </html>
-  `);
+  // Get the extension's screenshot.html page URL
+  const extensionUrl = chrome.runtime.getURL('screenshot.html');
 
-  newWindow.document.close();
+  // Construct the full URL with the encoded image as a query parameter
+  const screenshotUrl = `${extensionUrl}?image=${encodedImage}`;
+
+  // Open the screenshot in a new tab
+  const newTab = window.open(screenshotUrl, '_blank');
+
+  // Focus on the new tab if it opened successfully, otherwise show popup blocked alert
+  if (newTab) {
+    newTab.focus();
+  } else {
+    alert('Il popup è stato bloccato. Abilita i popup per questa estensione nelle impostazioni del browser.');
+  }
 }

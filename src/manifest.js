@@ -44,7 +44,7 @@ export async function getManifest() {
     ],
     web_accessible_resources: [
       {
-        resources: ["screenshot-template.html"],
+        resources: ["screenshot.html"],
         matches: ["<all_urls>"]
       }
     ]

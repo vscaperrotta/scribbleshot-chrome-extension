@@ -36,7 +36,6 @@ export default function useScreenshot() {
       };
 
       // Send message to background script to capture tab
-      // eslint-disable-next-line no-undef
       chrome.runtime.sendMessage(
         {
           msg: "capture_tab",
