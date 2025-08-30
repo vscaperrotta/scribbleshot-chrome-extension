@@ -13,7 +13,7 @@ Browser.action.onClicked.addListener(async (tab) => {
     });
   }
 
-  const iconPath = "../icon-default.png";
+  const iconPath = isEnabled ? "../icon-enabled.png" : "../icon.png";
   Browser.action.setIcon({ path: iconPath });
 });
 

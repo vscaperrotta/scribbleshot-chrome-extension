@@ -14,12 +14,14 @@ import useScreenshot from "./hooks/useScreenshot";
 import messages from './messages';
 
 export default function Wrapper() {
+  const DEFAULT_COLOR = '#00ff00';
+
   const canvasRef = useRef(null);
   const [isDrawingMode, setIsDrawingMode] = useState(false);
   const [isDrawing, setIsDrawing] = useState(false);
   const [startPoint, setStartPoint] = useState({ x: 0, y: 0 });
   const [isEraserMode, setIsEraserMode] = useState(false);
-  const [color, setColor] = useState('#00ff00');
+  const [color, setColor] = useState(DEFAULT_COLOR);
   const [isInitialized, setIsInitialized] = useState(false);
 
   // Stack per undo/redo
