@@ -1,4 +1,4 @@
-<h3 align='center'>ScribbleShot</h3>
+<h3 align='center'>Hebi - ヘビ</h3>
 <p align='center'>Chrome Extension</p>
 
 <br />
@@ -10,7 +10,7 @@
 <br />
 <br />
 
-**ScribbleShot** is a Chrome extension that allows you to draw annotations directly on web pages. With an intuitive drawing interface, you can highlight important content, add visual notes, and capture annotated screenshots for later reference or sharing.
+**Hebi** is a Chrome extension that allows you to draw annotations directly on web pages. With an intuitive drawing interface, you can highlight important content, add visual notes, and capture annotated screenshots for later reference or sharing.
 
 ![CSS Inspector Screenshot](assets/screenshot.png)
 

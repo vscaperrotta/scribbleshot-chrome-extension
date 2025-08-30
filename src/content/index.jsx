@@ -3,7 +3,7 @@ import App from './App';
 
 function initApp() {
   const container = document.createElement('div');
-  container.id = 'scribble-shot-content-script';
+  container.id = 'hebi-content-script';
 
   document.body.appendChild(container);
 

@@ -1,7 +1,7 @@
 {
-  "name": "scribble-shot-chrome-extension",
-  "displayName": "ScribbleShot",
-  "description": "Chrome extention to write note in page and export a screen of the page with the note",
+  "name": "hebi-chrome-extension",
+  "displayName": "Hebi - Draw and screenshots",
+  "description": "Hebi [ヘビ] Chrome extention to sketch in page and export a screen of the page with the note.",
   "version": "0.0.1",
   "private": true,
   "author": "Vittorio Scaperrotta",

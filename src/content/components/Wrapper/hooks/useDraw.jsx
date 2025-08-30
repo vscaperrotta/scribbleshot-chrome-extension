@@ -78,7 +78,7 @@ export default function useDraw({
       // Draw a dot on click to improve visualization
       ctx.beginPath();
       ctx.strokeStyle = color;
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 6;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.arc(point.x, point.y, 2, 0, 2 * Math.PI);
@@ -105,7 +105,7 @@ export default function useDraw({
         ctx.globalCompositeOperation = "source-over";
         ctx.beginPath();
         ctx.strokeStyle = color;
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 6;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         ctx.moveTo(startPoint.x, startPoint.y);

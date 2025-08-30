@@ -2645,6 +2645,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hebi-chrome-extension@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "hebi-chrome-extension@workspace:."
+  dependencies:
+    "@eslint/js": "npm:^9.18.0"
+    "@types/chrome": "npm:^0.0.299"
+    "@types/react": "npm:^19.0.8"
+    "@types/react-dom": "npm:^19.0.3"
+    "@vitejs/plugin-react": "npm:^4.3.4"
+    archiver: "npm:^7.0.1"
+    better-npm-run: "npm:^0.1.1"
+    cross-env: "npm:^7.0.3"
+    eslint: "npm:^9.18.0"
+    eslint-plugin-react: "npm:^7.37.4"
+    eslint-plugin-react-hooks: "npm:^5.1.0"
+    eslint-plugin-react-refresh: "npm:^0.4.18"
+    fs-extra: "npm:^11.3.0"
+    globals: "npm:^15.14.0"
+    npm-run-all: "npm:^4.1.5"
+    prop-types: "npm:^15.8.1"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
+    react-feather: "npm:^2.0.10"
+    rimraf: "npm:^6.0.1"
+    sass: "npm:^1.83.4"
+    terser: "npm:^5.37.0"
+    vite: "npm:^6.0.11"
+    vite-plugin-static-copy: "npm:^2.2.0"
+    webextension-polyfill: "npm:^0.12.0"
+  languageName: unknown
+  linkType: soft
+
 "hosted-git-info@npm:^2.1.4":
   version: 2.8.9
   resolution: "hosted-git-info@npm:2.8.9"
@@ -4274,38 +4306,6 @@ __metadata:
   checksum: 10c0/a4bb1da406b613ce72c1299db43759526058fdcc413999c3c3e0db8956df7633acf395cb20eb2303b6a65d658d66b6585d344460abaee8080b4aa931f10eaafe
   languageName: node
   linkType: hard
-
-"scribble-shot-chrome-extension@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "scribble-shot-chrome-extension@workspace:."
-  dependencies:
-    "@eslint/js": "npm:^9.18.0"
-    "@types/chrome": "npm:^0.0.299"
-    "@types/react": "npm:^19.0.8"
-    "@types/react-dom": "npm:^19.0.3"
-    "@vitejs/plugin-react": "npm:^4.3.4"
-    archiver: "npm:^7.0.1"
-    better-npm-run: "npm:^0.1.1"
-    cross-env: "npm:^7.0.3"
-    eslint: "npm:^9.18.0"
-    eslint-plugin-react: "npm:^7.37.4"
-    eslint-plugin-react-hooks: "npm:^5.1.0"
-    eslint-plugin-react-refresh: "npm:^0.4.18"
-    fs-extra: "npm:^11.3.0"
-    globals: "npm:^15.14.0"
-    npm-run-all: "npm:^4.1.5"
-    prop-types: "npm:^15.8.1"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
-    react-feather: "npm:^2.0.10"
-    rimraf: "npm:^6.0.1"
-    sass: "npm:^1.83.4"
-    terser: "npm:^5.37.0"
-    vite: "npm:^6.0.11"
-    vite-plugin-static-copy: "npm:^2.2.0"
-    webextension-polyfill: "npm:^0.12.0"
-  languageName: unknown
-  linkType: soft
 
 "semver@npm:2 || 3 || 4 || 5, semver@npm:^5.5.0":
   version: 5.7.2
